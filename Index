@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>দেশ নেতা চুদি না</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f8f8ff;
+      color: #222;
+      padding: 2rem;
+      text-align: center;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      max-width: 500px;
+      width: 100%;
+    }
+    .dark-mode .container {
+      background: #2b2b2b;
+      box-shadow: none;
+    }
+    .btn {
+      background: #570df8;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      margin: 1rem;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #3b0df8;
+    }
+    .input {
+      padding: 0.7rem;
+      width: 60%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>স্বাগতম! এসেছো যখন দেশনেতাকে পুটকি মেরে যাও</h2>
+    <div>
+      <h3>🟦 পুটকি মারা Count: <span id="putkiCount">০</span></h3>
+      <button class="btn" onclick="increaseCount()">🔴 মারো</button>
+    </div>
+    <hr>
+    <div>
+      <h3>💰 ১০% চাঁদা ক্যালকুলেটর</h3>
+      <input class="input" type="number" id="income" placeholder="আপনার ইনকাম লিখুন">
+      <br>
+      <button class="btn" onclick="calculateTax()">হিসাব কর</button>
+      <p id="taxResult"></p>
+    </div>
+    <hr>
+    <div>
+      <h3>🎭 BNP 👌🖕</h3>
+      <p id="trollQuote">“টিনের চালের কাউয়া, তারেক জিয়ার শাউয়া!”</p>
+      <button class="btn" onclick="generateTroll()">🔁 আরেকটা দে</button>
+    </div>
+    <hr>
+    <div>
+      <button class="btn" onclick="toggleMode()">⚙️ DarkMode 🔄</button>
+      <br><br>
+      <button class="btn" onclick="playAnthem()">🔊 চাদা Anthem</button>
+      <audio id="anthem" src="assets/troll-anthem.mp3"></audio>
+    </div>
+    <div class="footer">© Sazid Moontasir  2025</div>
+  </div>
+
+  <script>
+    // LocalStorage based counter
+    let count = localStorage.getItem("putkiCount") || 0;
+    document.getElementById("putkiCount").innerText = count;
+
+    function increaseCount() {
+      count++;
+      localStorage.setItem("putkiCount", count);
+      document.getElementById("putkiCount").innerText = count;
+    }
+
+    // 10% tax calculator
+    function calculateTax() {
+      let income = document.getElementById("income").value;
+      if (!income || income <= 0) {
+        document.getElementById("taxResult").innerText = "দয়া করে সঠিক ইনকাম লিখুন!";
+        return;
+      }
+      let tax = income * 0.10;
+      document.getElementById("taxResult").innerText = `তোমার খাটুনির  = ${tax.toFixed(2)} টাকা জারেক তিয়াকে দিয়ে দেও`;
+    }
+
+    // Troll generator
+    const trolls = [
+       "BNP মানে = বারবার নতুন পাগলামি",
+     
+      "টিনের চালের কাউয়া, তারেক জিয়া শাউয়া!",
+      "BNP এখন Facebook Party!",
+      
+    ];
+
+    function generateTroll() {
+      const index = Math.floor(Math.random() * trolls.length);
+      document.getElementById("trollQuote").innerText = trolls[index];
+    }
+
+    // Zia Mode
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // Play anthem
+    function playAnthem() {
+      document.getElementById("anthem").play();
+    }
+  </script>
+</body>
+</html>
